@@ -20,16 +20,16 @@
         <Key android:codes="48" android:keyLabel="0"/>
     </Row>
     <Row>
-        <Key android:codes="ㅂ" android:keyLabel="ㅂ" android:keyEdgeFlags="left"/>
-        <Key android:codes="ㅈ" android:keyLabel="ㅈ"/>
-        <Key android:codes="ㄷ" android:keyLabel="ㄷ"/>
-        <Key android:codes="ㄱ" android:keyLabel="ㄱ"/>
-        <Key android:codes="ㅅ" android:keyLabel="ㅅ"/>
-        <Key android:codes="ㅛ" android:keyLabel="ㅛ"/>
-        <Key android:codes="ㅕ" android:keyLabel="ㅕ"/>
-        <Key android:codes="ㅑ" android:keyLabel="ㅑ"/>
-        <Key android:codes="ㅐ" android:keyLabel="ㅐ"/>
-        <Key android:codes="ㅔ" android:keyLabel="ㅔ" android:keyEdgeFlags="right"/>
+        <Key android:codes="113" android:keyLabel="ㅂ" android:keyEdgeFlags="left"/>
+        <Key android:codes="119" android:keyLabel="ㅈ"/>
+        <Key android:codes="101" android:keyLabel="ㄷ"/>
+        <Key android:codes="114" android:keyLabel="ㄱ"/>
+        <Key android:codes="116" android:keyLabel="ㅅ"/>
+        <Key android:codes="121" android:keyLabel="ㅛ"/>
+        <Key android:codes="117" android:keyLabel="ㅕ"/>
+        <Key android:codes="105" android:keyLabel="ㅑ"/>
+        <Key android:codes="111" android:keyLabel="ㅐ"/>
+        <Key android:codes="112" android:keyLabel="ㅔ" android:keyEdgeFlags="right"/>
     </Row>
     <Row>
         <Key android:codes="97" android:keyLabel="ㅁ" android:keyEdgeFlags="left"/>
