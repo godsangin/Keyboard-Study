@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethod
 import android.widget.LinearLayout
 
 class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListener{
@@ -41,6 +42,9 @@ class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionLis
     private var isCap:Boolean = false
     private lateinit var context:InputMethodService
     private var mode = 0
+    lateinit var inputMethod: InputMethod
+    val map:HashMap<Char, Char> = hashMapOf<Char, Char>()
+
 
     override fun onCreateInputView(): View {
         keyboardView = layoutInflater.inflate(R.layout.keyboard_view, null) as KeyboardView
@@ -52,6 +56,7 @@ class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionLis
 //                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //            }
 //        })
+        mapping()
         return keyboardView
     }
 
@@ -99,7 +104,10 @@ class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionLis
             else -> {
                 var code = i.toChar()
                 //to
-                if((code in 'a'..'z' || code in 'A'..'Z') && isCap){
+                if(mode == 1){
+                    code = map.get(code)!!
+                }
+                else if((code in 'a'..'z' || code in 'A'..'Z') && isCap){
                     code = code.toUpperCase()
                 }
                 inputConnection.commitText(code.toString(), 1)
@@ -119,6 +127,36 @@ class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionLis
             Keyboard.KEYCODE_DELETE -> am.playSoundEffect(AudioManager.FX_KEYPRESS_DELETE)
             else -> am.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD)
         }
+    }
+
+    private fun mapping(){
+        map.put('q', 'ㅂ')
+        map.put('w', 'ㅈ')
+        map.put('e', 'ㄷ')
+        map.put('r', 'ㄱ')
+        map.put('t', 'ㅅ')
+        map.put('y', 'ㅛ')
+        map.put('u', 'ㅕ')
+        map.put('i', 'ㅑ')
+        map.put('o', 'ㅐ')
+        map.put('p', 'ㅔ')
+        map.put('a', 'ㅁ')
+        map.put('s', 'ㄴ')
+        map.put('d', 'ㅇ')
+        map.put('f', 'ㄹ')
+        map.put('g', 'ㅎ')
+        map.put('h', 'ㅗ')
+        map.put('j', 'ㅓ')
+        map.put('k', 'ㅏ')
+        map.put('l', 'ㅣ')
+        map.put('z', 'ㅋ')
+        map.put('x', 'ㅌ')
+        map.put('c', 'ㅊ')
+        map.put('v', 'ㅍ')
+        map.put('b', 'ㅠ')
+        map.put('n', 'ㅜ')
+        map.put('m', 'ㅡ')
+
     }
 
 }
