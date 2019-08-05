@@ -6,6 +6,9 @@
                                          android:layout_alignParentBottom="true"
                                          android:keyTextColor="@color/keyboardText"
                                          android:keyBackground="@drawable/key_background"
+                                         android:layout_gravity="center"
+                                         android:paddingBottom="4dp"
+                                         android:paddingTop="4dp"
                                          android:background="@color/keyboardBackground">
 
 </android.inputmethodservice.KeyboardView>
