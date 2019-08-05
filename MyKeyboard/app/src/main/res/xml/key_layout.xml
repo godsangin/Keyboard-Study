@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-          android:keyWidth="10%p"
-          android:horizontalGap="4dp"
+          android:keyWidth="8.8%p"
+          android:horizontalGap="1.1%p"
           android:verticalGap="4dp"
           android:keyHeight="44dp"
           android:keyTextColor="@color/colorAccent"
@@ -32,7 +32,7 @@
         <Key android:codes="112" android:keyLabel="p" android:keyEdgeFlags="right"/>
     </Row>
     <Row>
-        <Key android:codes="97" android:keyLabel="a" android:keyEdgeFlags="left"/>
+        <Key android:codes="97" android:keyLabel="a" android:keyEdgeFlags="left" android:horizontalGap="5%p"/>
         <Key android:codes="115" android:keyLabel="s"/>
         <Key android:codes="100" android:keyLabel="d"/>
         <Key android:codes="102" android:keyLabel="f"/>
@@ -43,7 +43,7 @@
         <Key android:codes="108" android:keyLabel="l"/>
     </Row>
     <Row>
-        <Key android:codes="-1" android:keyLabel="CAPS" android:keyWidth="20%p" android:keyEdgeFlags="left"/>
+        <Key android:codes="-1" android:keyLabel="CAPS" android:keyWidth="15%p" android:keyEdgeFlags="left"/>
         <Key android:codes="122" android:keyLabel="z"/>
         <Key android:codes="120" android:keyLabel="x"/>
         <Key android:codes="99" android:keyLabel="c"/>
@@ -51,13 +51,13 @@
         <Key android:codes="98" android:keyLabel="b"/>
         <Key android:codes="110" android:keyLabel="n"/>
         <Key android:codes="109" android:keyLabel="m"/>
-        <Key android:codes="-5" android:keyLabel="DEL" android:keyWidth="15%p" android:isRepeatable="true" android:keyEdgeFlags="right"/>
+        <Key android:codes="-5" android:keyLabel="DEL" android:keyWidth="10%p" android:isRepeatable="true" android:keyEdgeFlags="right"/>
     </Row>
     <Row android:rowEdgeFlags="bottom">
-        <Key android:codes="200" android:keyLabel=".?" android:keyWidth="20%p"  android:keyEdgeFlags="left"/>
+        <Key android:codes="200" android:keyLabel=".?" android:keyWidth="15%p"  android:keyEdgeFlags="left"/>
         <Key android:codes="-2" android:keyLabel="한" android:keyWidth="10%p" />
         <Key android:codes="202" android:keyLabel="MC" android:keyWidth="10%p" />
-        <Key android:codes="32" android:keyLabel="SPACE" android:keyWidth="40%p" android:isRepeatable="true"/>
+        <Key android:codes="32" android:keyLabel="SPACE" android:keyWidth="30%p" android:isRepeatable="true"/>
         <Key android:codes="46" android:keyLabel="."/>
         <Key android:codes="-4" android:keyBackground="@color/colorPrimary" android:keyLabel="DONE" android:keyWidth="20%p" android:keyEdgeFlags="right"/>
     </Row>

@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethod
-import android.widget.LinearLayout
 
 class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListener{
     override fun swipeRight() {
@@ -44,6 +43,9 @@ class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionLis
     private var mode = 0
     lateinit var inputMethod: InputMethod
     val map:HashMap<Char, Char> = hashMapOf<Char, Char>()
+    var expectJung = false
+    private var choindex:Char = '\u0000'
+    private lateinit var hangulMaker:HangulMaker
 
 
     override fun onCreateInputView(): View {
@@ -71,7 +73,7 @@ class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionLis
         playClick(i)
 
         when(i){
-            Keyboard.KEYCODE_DELETE -> {
+            Keyboard.KEYCODE_DELETE -> {//한글처리
                 val selectedText: CharSequence? = inputConnection.getSelectedText(0)
                 if (selectedText == null || TextUtils.isEmpty(selectedText)) {
                     inputConnection.deleteSurroundingText(1, 0)
@@ -87,11 +89,15 @@ class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionLis
             Keyboard.KEYCODE_DONE -> {
                 inputConnection.sendKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER))
             }
-
+            32 -> {
+                inputConnection.commitText(" ", 1)
+                hangulMaker.clear()
+            }
             -2 ->{
                 if(mode == 0){
                     keyboard = Keyboard(this, R.xml.key_layout_hangul)
                     keyboardView.keyboard = keyboard
+                    hangulMaker = HangulMaker(inputConnection)
                     mode = 1
                 }
                 else{
@@ -106,11 +112,15 @@ class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionLis
                 //to
                 if(mode == 1){
                     code = map.get(code)!!
+                    hangulMaker.commit(code)
+
                 }
                 else if((code in 'a'..'z' || code in 'A'..'Z') && isCap){
                     code = code.toUpperCase()
+                    inputConnection.commitText(code.toString(), 1)
+                }else{
+                    inputConnection.commitText(code.toString(), 1)
                 }
-                inputConnection.commitText(code.toString(), 1)
             }
         }
     }
@@ -160,3 +170,4 @@ class MyKeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionLis
     }
 
 }
+
