@@ -20,6 +20,7 @@
 ## Automata
 > - firstmodel의 경우 4가지 상태로 "", "ㅂ", "바", "박"의 네가지 상태를 가짐.
 > - 각자의 상태에서 기대되는 다음 입력에 따라 상태가 변함.
+![ex_screenshot](./img/keyboardAutomata.png)
 
 # Secondmodel
 * 다른 뷰 레이아웃에서 keyevent사용 가능성 확인
