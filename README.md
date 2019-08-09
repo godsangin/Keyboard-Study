@@ -7,7 +7,11 @@
 
 ### InputMethodService
 > - currentInputConnection: 현재 커서를 담고 있는 인덱스를 알고 추가, 변경, 삭제기능을 담당.
-> - key event를 감지하여 휴대폰과 Connection을 담당.
+> - key event를 감지하여 휴대폰과 Connection을 담당
+
+### Service
+> - service로 등록하여 다른 애플리케이션이 실행중일 경우에도 사용이 가능하다.
+> - 발생하는 KeyEvent를 감지하고 정의된 동작에 따라 EditText의 변경을 담당한다.
 
 ### KeyboardView
 > - OnKeyboardActionListener를 상속하여 KeyboardView의 onKey메소드 재정의.
@@ -22,7 +26,15 @@
 > - 각자의 상태에서 기대되는 다음 입력에 따라 상태가 변함.
 ![ex_screenshot](./img/keyboardAutomata.PNG)
 
-# Secondmodel
+## Secondmodel
 * 다른 뷰 레이아웃에서 keyevent사용 가능성 확인
 * 한글 오토마타 기능 완성(이중모음, 이중자음)
 * 자동완성 기능 추가
+
+### Service
+> - currentInputConnection: 현재 커서를 담고 있는 인덱스를 알고 추가, 변경, 삭제기능을 담당.
+> - KeyEvent를 KeyboardView객체가 아닌 Instrumentation객체가 송신하고 버튼의 ClickListener를 통하여 트리거한다.
+> - KeyboardView의 OnKeyboardActionListener가 아닌 서비스 자체의 OnKeyDown메소드를 통하거나, 키보드 전체의 뷰를 담당하는 LinearLayout(Constraint Layout등으로 대체 가능)의 OnKeyListener를 통하여 KeyEvent를 감지할 수 있다.
+
+### KeyboardView & Keyboard
+> - API level 29 부터 deprecate되기 때문에 삭제한다.
