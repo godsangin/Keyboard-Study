@@ -27,13 +27,13 @@
 ![ex_screenshot](./img/keyboardAutomata.PNG)
 
 ## Secondmodel
-* 다른 뷰 레이아웃에서 keyevent사용 가능성 확인
+* onclickevent를 통해 keyevent송수신
 * 한글 오토마타 기능 완성(이중모음, 이중자음)
 * 한글패드, 영문패드, 숫자패드, 특수기호패드 기능 추가
 * Key입력 시 소리 또는 진동 추가(사용자가 커스텀 가능하도록)
 * Long Click 입력 시 글자 변경 기능 추가(변경되는 기호는 미정)
+* 키보드뷰 상단에 자주 쓰는 키패드를 추가할 수 있는 기능(텍스트 붙여넣기, 이모티콘, 커서이동 등등)
 
-* 자동완성 기능 추가
 
 ### Service
 > - currentInputConnection: 현재 커서를 담고 있는 인덱스를 알고 추가, 변경, 삭제기능을 담당.
