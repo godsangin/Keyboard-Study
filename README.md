@@ -44,7 +44,7 @@
 ### KeyboardView & Keyboard
 > - API level 29 부터 deprecate되기 때문에 삭제한다.
 
-### TID 및 향후 방향
+### TIL 및 향후 방향
  #### 2019.08.20
 > - 진동 기능 추가(사용자 커스텀 아직)
 > - 커스텀 전용 뷰 추가
