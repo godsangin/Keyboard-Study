@@ -1,71 +1,56 @@
 package com.example.keyboardsecondmodel
 
-import android.app.Instrumentation
+import android.content.Context
 import android.inputmethodservice.InputMethodService
-import android.inputmethodservice.Keyboard
-import android.inputmethodservice.KeyboardView
+import android.os.Vibrator
 import android.util.Log
-import android.view.KeyEvent
 import android.view.View
-import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 
 
-class KeyBoardService : InputMethodService() {
-    
+class KeyBoardService : InputMethodService(){
     lateinit var keyboardView:LinearLayout
+    lateinit var keyboardFrame:FrameLayout
+
+    lateinit var numPad:LinearLayout
+    val keyboardInterationListener = object:KeyboardInterationListener{
+        //inputconnection이 null일경우 재요청하는 부분 필요함
+        override fun modechange(mode: Int) {
+            when(mode){
+                0 ->{
+                    Log.d("modechange==", "clicked0")
+                    keyboardFrame.removeAllViews()
+                    keyboardFrame.addView(KeyboardEnglish.newInstance(applicationContext, layoutInflater, currentInputConnection, this))
+                }
+                1 -> {
+                    keyboardFrame.removeAllViews()
+                    keyboardFrame.addView(KeyboardKorean.newInstance(layoutInflater, currentInputConnection, this) )
+                }
+                2 -> {
+                    keyboardFrame.removeAllViews()
+                    keyboardFrame.addView(KeyboardSimbols.newInstance(layoutInflater, currentInputConnection, this))
+                }
+            }
+        }
+    }
+
 
     override fun onCreateInputView(): View {
+        //onclick에서 바로 변경하자
         keyboardView = layoutInflater.inflate(R.layout.keyboard_view, null) as LinearLayout
-        val button = keyboardView.findViewById<Button>(R.id.button1)
-        val button2 = keyboardView.findViewById<Button>(R.id.button2)
-        button.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(p0: View?) {
-                Thread(object: Runnable {
-                    override fun run() {
-                        Instrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_1)
-                    }
-                }).start()
-            }
-        })
+        keyboardFrame = keyboardView.findViewById(R.id.keyboard_frame)
+        numPad = KeyboardNumpad.newInstance(layoutInflater, currentInputConnection, keyboardInterationListener)
+        keyboardFrame.addView(KeyboardEnglish.newInstance(applicationContext, layoutInflater, currentInputConnection, keyboardInterationListener))
 
-        button2.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(p0: View?) {
-                keyboardView = layoutInflater.inflate(R.layout.keyboard_view2, null) as LinearLayout
-            }
-        })
-        keyboardView.setOnKeyListener(object: View.OnKeyListener{
-            override fun onKey(p0: View?, p1: Int, keyEvent: KeyEvent?): Boolean {//이벤트가 사용됬을 경우 true
-                val inputConnection = currentInputConnection
-                Log.d("keyevent==", keyEvent?.keyCode.toString())
-                if(inputConnection == null){
-                    return false
-                }
-                when(keyEvent?.keyCode){
-                    KeyEvent.KEYCODE_1 -> {
-                        inputConnection.commitText("1", 1)
-                    }
-                }
-                return false
-            }
-        })
         return keyboardView
     }
 
-
-
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        val inputConnection = currentInputConnection
-        Log.d("keyevent==", event?.keyCode.toString())
-        if(inputConnection == null){
-            return false
-        }
-        when(event?.keyCode){
-            KeyEvent.KEYCODE_1 -> {
-                inputConnection.commitText("1", 1)
-            }
-        }
-        return false
-
+    override fun updateInputViewShown() {
+        super.updateInputViewShown()
+        keyboardFrame.removeAllViews()
+        keyboardFrame.addView(KeyboardEnglish.newInstance(applicationContext, layoutInflater, currentInputConnection, keyboardInterationListener))
     }
+
+
 }
