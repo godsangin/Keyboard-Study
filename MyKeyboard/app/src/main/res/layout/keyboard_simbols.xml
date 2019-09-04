@@ -90,172 +90,181 @@
                 android:text="0"/>
     </LinearLayout>
     <LinearLayout
+            android:id="@+id/first_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
         <Button
-                android:id="@+id/key_q"
+                android:id="@+id/key_plus"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅂ"/>
+                android:text="+"/>
         <Button
-                android:id="@+id/key_w"
+                android:id="@+id/key_multiply"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅈ"/>
+                android:text="×"/>
         <Button
-                android:id="@+id/key_e"
+                android:id="@+id/key_division"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㄷ"/>
+                android:text="÷"/>
         <Button
-                android:id="@+id/key_r"
+                android:id="@+id/key_equal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㄱ"/>
+                android:text="="/>
         <Button
-                android:id="@+id/key_t"
+                android:id="@+id/key_slash"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅅ"/>
+                android:text="/"/>
         <Button
-                android:id="@+id/key_y"
+                android:id="@+id/key_won"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅛ"/>
+                android:text="￦"/>
         <Button
-                android:id="@+id/key_u"
+                android:id="@+id/key_leftangle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅕ"/>
+                android:text="&lt;"/>
         <Button
-                android:id="@+id/key_i"
+                android:id="@+id/key_rightangle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅑ"/>
+                android:text="&gt;"/>
         <Button
-                android:id="@+id/key_o"
+                android:id="@+id/key_heart"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅐ"/>
+                android:text="♡"/>
         <Button
-                android:id="@+id/key_p"
+                android:id="@+id/key_star"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅔ"/>
+                android:text="☆"/>
     </LinearLayout>
     <LinearLayout
+            android:id="@+id/second_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
             android:orientation="horizontal">
         <Button
-                android:id="@+id/key_a"
+                android:id="@+id/key_exclamation"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅁ"/>
+                android:text="!"/>
         <Button
-                android:id="@+id/key_s"
+                android:id="@+id/key_at"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㄴ"/>
+                android:text="＠"/>
         <Button
-                android:id="@+id/key_d"
+                android:id="@+id/key_sharp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅇ"/>
+                android:text="#"/>
         <Button
-                android:id="@+id/key_f"
+                android:id="@+id/key_tilde"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㄹ"/>
+                android:text="~"/>
         <Button
-                android:id="@+id/key_g"
+                android:id="@+id/key_percent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅎ"/>
+                android:text="%"/>
         <Button
-                android:id="@+id/key_h"
+                android:id="@+id/key_circumflex"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅗ"/>
+                android:text="^"/>
         <Button
-                android:id="@+id/key_j"
+                android:id="@+id/key_ampersand"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅓ"/>
+                android:text="&amp;"/>
         <Button
-                android:id="@+id/key_k"
+                android:id="@+id/key_asterisk"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅏ"/>
+                android:text="*"/>
         <Button
-                android:id="@+id/key_l"
+                android:id="@+id/key_leftparenthesis"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅣ"/>
+                android:text="("/>
+        <Button
+                android:id="@+id/key_rightparenthesis"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:background="@drawable/key_background"
+                android:text=")"/>
     </LinearLayout>
     <LinearLayout
+            android:id="@+id/third_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -267,63 +276,63 @@
                 android:layout_weight="2"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="CAPS"/>
+                android:text="!?"/>
         <Button
-                android:id="@+id/key_z"
+                android:id="@+id/key_minus"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅋ"/>
+                android:text="-"/>
         <Button
-                android:id="@+id/key_x"
+                android:id="@+id/key_apostrophe"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅌ"/>
+                android:text="'"/>
         <Button
-                android:id="@+id/key_c"
+                android:id="@+id/key_quotationmark"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅊ"/>
+                android:text='"'/>
         <Button
-                android:id="@+id/key_v"
+                android:id="@+id/key_colon"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅍ"/>
+                android:text=":"/>
         <Button
-                android:id="@+id/key_b"
+                android:id="@+id/key_semicolon"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅠ"/>
+                android:text=";"/>
         <Button
-                android:id="@+id/key_n"
+                android:id="@+id/key_restin"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅜ"/>
+                android:text=","/>
         <Button
-                android:id="@+id/key_m"
+                android:id="@+id/key_questionmark"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="ㅡ"/>
+                android:text="？"/>
         <Button
                 android:id="@+id/del"
                 android:layout_width="0dp"
@@ -340,7 +349,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
         <Button
-                android:id="@+id/key_simbols"
+                android:id="@+id/key_spacial"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"

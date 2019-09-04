@@ -4,6 +4,7 @@ import android.content.Context
 import android.inputmethodservice.InputMethodService
 import android.os.Vibrator
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -25,23 +26,26 @@ class KeyBoardService : InputMethodService(){
                 }
                 1 -> {
                     keyboardFrame.removeAllViews()
-                    keyboardFrame.addView(KeyboardKorean.newInstance(layoutInflater, currentInputConnection, this) )
+                    keyboardFrame.addView(KeyboardKorean.newInstance(applicationContext, layoutInflater, currentInputConnection, this) )
                 }
                 2 -> {
                     keyboardFrame.removeAllViews()
-                    keyboardFrame.addView(KeyboardSimbols.newInstance(layoutInflater, currentInputConnection, this))
+                    keyboardFrame.addView(KeyboardSimbols.newInstance(applicationContext, layoutInflater, currentInputConnection, this))
                 }
             }
         }
     }
 
+    override fun getKeyDispatcherState(): KeyEvent.DispatcherState {
+        return super.getKeyDispatcherState()
+    }
 
     override fun onCreateInputView(): View {
         //onclick에서 바로 변경하자
         keyboardView = layoutInflater.inflate(R.layout.keyboard_view, null) as LinearLayout
         keyboardFrame = keyboardView.findViewById(R.id.keyboard_frame)
         numPad = KeyboardNumpad.newInstance(layoutInflater, currentInputConnection, keyboardInterationListener)
-        keyboardFrame.addView(KeyboardEnglish.newInstance(applicationContext, layoutInflater, currentInputConnection, keyboardInterationListener))
+        keyboardFrame.addView(KeyboardKorean.newInstance(applicationContext, layoutInflater, currentInputConnection, keyboardInterationListener))
 
         return keyboardView
     }
@@ -49,7 +53,7 @@ class KeyBoardService : InputMethodService(){
     override fun updateInputViewShown() {
         super.updateInputViewShown()
         keyboardFrame.removeAllViews()
-        keyboardFrame.addView(KeyboardEnglish.newInstance(applicationContext, layoutInflater, currentInputConnection, keyboardInterationListener))
+        keyboardFrame.addView(KeyboardKorean.newInstance(applicationContext, layoutInflater, currentInputConnection, keyboardInterationListener))
     }
 
 

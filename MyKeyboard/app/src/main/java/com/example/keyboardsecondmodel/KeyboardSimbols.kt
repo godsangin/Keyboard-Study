@@ -1,5 +1,11 @@
 package com.example.keyboardsecondmodel
 
+import android.content.Context
+import android.inputmethodservice.Keyboard
+import android.media.AudioManager
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +20,26 @@ class KeyboardSimbols {
         lateinit var keyboardInterationListener: KeyboardInterationListener
         var isCaps:Boolean = false
         var buttons:MutableList<Button> = mutableListOf<Button>()
+        lateinit var vibrator: Vibrator
+        lateinit var context:Context
 
-        fun newInstance(layoutInflater: LayoutInflater, inputConnection: InputConnection, keyboardInterationListener: KeyboardInterationListener): LinearLayout {
+        fun newInstance(context:Context, layoutInflater: LayoutInflater, inputConnection: InputConnection, keyboardInterationListener: KeyboardInterationListener): LinearLayout {
             this.simbolsLayout = layoutInflater.inflate(R.layout.keyboard_simbols, null) as LinearLayout
             this.inputConnection = inputConnection
             this.keyboardInterationListener = keyboardInterationListener
+            this.vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            this.context = context
+
+            val sharedPreferences = context.getSharedPreferences("setting", Context.MODE_PRIVATE)
+            val height = sharedPreferences.getInt("keyboardHeight", 100)
+
+            val firstLine = simbolsLayout.findViewById<LinearLayout>(R.id.first_line)
+            val secondLine = simbolsLayout.findViewById<LinearLayout>(R.id.second_line)
+            val thirdLine = simbolsLayout.findViewById<LinearLayout>(R.id.third_line)
+            firstLine.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height)
+            secondLine.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height)
+            thirdLine.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height)
+
             buttons.add(simbolsLayout.findViewById<Button>(R.id.key_0))
             buttons.add(simbolsLayout.findViewById<Button>(R.id.key_2))
             buttons.add(simbolsLayout.findViewById<Button>(R.id.key_3))
@@ -73,10 +94,26 @@ class KeyboardSimbols {
 
         val simbolsOnClickListener = object: View.OnClickListener {
             override fun onClick(view: View?) {
-                Log.d("inputconnection==", inputConnection.toString())
+                val sharedPreferences = context.getSharedPreferences("setting", Context.MODE_PRIVATE)
+                val sound = sharedPreferences.getInt("keyboardSound", -1)
+                val vibrate = sharedPreferences.getInt("keyboardVibrate", -1)
+                if(vibrate > 0){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vibrator.vibrate(VibrationEffect.createOneShot(70, vibrate))
+                    }
+                    else{
+                        vibrator.vibrate(70)
+                    }
+                }
+                playClick((view as Button).text.toString().toCharArray().get(0).toInt())
+
+
                 when (view?.id) {
                     R.id.key_caps -> {
                         modeChange()
+                    }
+                    R.id.key_space -> {
+                        inputConnection.commitText(" ", 1)
                     }
                     R.id.del -> {
                         inputConnection.deleteSurroundingText(1, 0)
@@ -103,6 +140,16 @@ class KeyboardSimbols {
                 for(button in buttons){
                     button.setText(button.text.toString().toUpperCase())
                 }
+            }
+        }
+
+        private fun playClick(i: Int) {
+            val am = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
+            when (i) {
+                32 -> am!!.playSoundEffect(AudioManager.FX_KEYPRESS_SPACEBAR)
+                Keyboard.KEYCODE_DONE, 10 -> am!!.playSoundEffect(AudioManager.FX_KEYPRESS_RETURN)
+                Keyboard.KEYCODE_DELETE -> am!!.playSoundEffect(AudioManager.FX_KEYPRESS_DELETE)
+                else -> am!!.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD, -1.toFloat())
             }
         }
 

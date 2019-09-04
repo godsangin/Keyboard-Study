@@ -37,7 +37,9 @@ class SettingRecyclerViewAdapter(val context:Context, val settingList:ArrayList<
                 //?
             }
             holder?.seekBar?.max = 200
-            holder?.seekBar?.progress = 100
+            if(holder?.seekBar != null){
+                keyboardSettingListener?.setKeyboardHeight(holder?.seekBar?.progress)
+            }
         }
         holder.seekBar?.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
@@ -74,7 +76,7 @@ class SettingRecyclerViewAdapter(val context:Context, val settingList:ArrayList<
                 am!!.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD, (-progress).toFloat())
             }
             "keyboardHeight" -> {
-
+                Log.d("progress==", progress.toString())
                 keyboardSettingListener?.setKeyboardHeight(progress)
 
             }
@@ -102,6 +104,7 @@ class SettingRecyclerViewAdapter(val context:Context, val settingList:ArrayList<
             else{
                 checkBox?.visibility = View.GONE
             }
+            Log.d("size==", size.toString())
             if(size > 0){
                 checkBox?.isChecked = true
                 seekBar?.visibility = View.VISIBLE
