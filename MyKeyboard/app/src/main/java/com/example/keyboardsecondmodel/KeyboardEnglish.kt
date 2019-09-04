@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.media.AudioManager
 import android.inputmethodservice.Keyboard
 import android.content.Context.AUDIO_SERVICE
+import android.view.KeyEvent
 import androidx.core.content.ContextCompat.getSystemService
 
 
@@ -103,10 +104,10 @@ class KeyboardEnglish {
                 val vibrate = sharedPreferences.getInt("keyboardVibrate", -1)
                 if(vibrate > 0){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        vibrator.vibrate(VibrationEffect.createOneShot(100, vibrate))
+                        vibrator.vibrate(VibrationEffect.createOneShot(70, vibrate))
                     }
                     else{
-                        vibrator.vibrate(100)
+                        vibrator.vibrate(70)
                     }
                 }
 
@@ -116,13 +117,19 @@ class KeyboardEnglish {
                         modeChange()
                     }
                     R.id.del -> {
-                        KeyboardEnglish.inputConnection.deleteSurroundingText(1, 0)
+                        inputConnection.deleteSurroundingText(1, 0)
                     }
                     R.id.key_modechange -> {
                         keyboardInterationListener.modechange(1)
                     }
                     R.id.key_simbols -> {
                         keyboardInterationListener.modechange(2)
+                    }
+                    R.id.key_space -> {
+                        inputConnection.commitText(" ", 1)
+                    }
+                    R.id.key_enter -> {
+                        inputConnection.sendKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER))
                     }
                     else -> {
                         playClick((view as Button).text.toString().toCharArray().get(0).toInt())
