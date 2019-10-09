@@ -62,7 +62,7 @@
 > - 소리 및 진동 설정 조절 가능
 > - 키보드 크기 설정 조절 가능
 
-#### SettingCustomActivity
+> #### SettingCustomActivity
 > - 편의 기능 설정
 > - 한손 조작 모드
 > - 사용자 설정 키 패드 추가
