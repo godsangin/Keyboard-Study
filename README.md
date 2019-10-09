@@ -58,7 +58,7 @@
 > - API level 29 부터 deprecate되기 때문에 삭제한다.
 
 ### 4. MainActivity
-#### SettingDetailActivity
+> #### SettingDetailActivity
 > - 소리 및 진동 설정 조절 가능
 > - 키보드 크기 설정 조절 가능
 
