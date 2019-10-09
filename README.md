@@ -37,48 +37,48 @@
 
 
 ### 1. Service
-     > - currentInputConnection: 현재 커서를 담고 있는 인덱스를 알고 추가, 변경, 삭제기능을 담당.
-     > - 현재 입력 상태에 따라 FrameLayout을 통해 KeyboardKorean, KeyboardEnglish, KeyboardSimbols, KeyboardNumpad, KeyboardEmoji로 변경된다.
-     > - 입력상태를 변환하기 위한 KeyboardInteractionListener 구현
-     > - 키보드의 높이를 정의하는 KeyboardSettingListener 구현
-     > - 사용자가 커스텀한 View를 추가하는 부분이 추가됨.
-     > - 한손조작모드 기능 추가
+> - currentInputConnection: 현재 커서를 담고 있는 인덱스를 알고 추가, 변경, 삭제기능을 담당.
+> - 현재 입력 상태에 따라 FrameLayout을 통해 KeyboardKorean, KeyboardEnglish, KeyboardSimbols, KeyboardNumpad, KeyboardEmoji로 변경된다.
+> - 입력상태를 변환하기 위한 KeyboardInteractionListener 구현
+> - 키보드의 높이를 정의하는 KeyboardSettingListener 구현
+> - 사용자가 커스텀한 View를 추가하는 부분이 추가됨.
+> - 한손조작모드 기능 추가
 
-     #### KeyboardAction
-     > - 모든 종류의 키보드에서 구현되는 keyboard format layout
-     > - 키보드의 종류에 따라 정의된 Text로 구현됨
+> #### KeyboardAction
+> - 모든 종류의 키보드에서 구현되는 keyboard format layout
+> - 키보드의 종류에 따라 정의된 Text로 구현됨
 
-     ### 2. HangulMaker
-     > - 한글 오토마타를 정의하기 위한 Class
-     > - 4가지의 상태를 가지고 다음 입력값을 판단, commit한다.
-     > - 상태2, 상태3의 경우 이중모음 입력, 이중자음 입력을 판단하여 Text를 완성시킨다.
+### 2. HangulMaker
+> - 한글 오토마타를 정의하기 위한 Class
+> - 4가지의 상태를 가지고 다음 입력값을 판단, commit한다.
+> - 상태2, 상태3의 경우 이중모음 입력, 이중자음 입력을 판단하여 Text를 완성시킨다.
 
 
 ### 3. KeyboardView & Keyboard
-     > - API level 29 부터 deprecate되기 때문에 삭제한다.
+> - API level 29 부터 deprecate되기 때문에 삭제한다.
 
 ### 4. MainActivity
-     #### SettingDetailActivity
-     > - 소리 및 진동 설정 조절 가능
-     > - 키보드 크기 설정 조절 가능
+#### SettingDetailActivity
+> - 소리 및 진동 설정 조절 가능
+> - 키보드 크기 설정 조절 가능
 
-     #### SettingCustomActivity
-     > - 편의 기능 설정
-     > - 한손 조작 모드
-     > - 사용자 설정 키 패드 추가
-     > - 두가지 설정을 한 Activity에서 조절 가능하도록 구현
-     > - SQL Database 추가(selectable item, selected item)
+#### SettingCustomActivity
+> - 편의 기능 설정
+> - 한손 조작 모드
+> - 사용자 설정 키 패드 추가
+> - 두가지 설정을 한 Activity에서 조절 가능하도록 구현
+> - SQL Database 추가(selectable item, selected item)
 
 ### 5. 이모티콘 기능 추가
-     > - KeyboardSimbols 또는 사용자 설정에서 설정 가능
-     > - 5자리 16진수로 이루어져 있기 때문에 charSequence로 가정하자면 두자리를 차지한다.
-     > - sample로 Smileys & Emotion만을 구현
-     > - 이모티콘을 delete하는 연산을 수행할 경우 하나의 charSequence만 삭제하기 때문에 다른 문자로 변환된다.(수정 요망)
+> - KeyboardSimbols 또는 사용자 설정에서 설정 가능
+> - 5자리 16진수로 이루어져 있기 때문에 charSequence로 가정하자면 두자리를 차지한다.
+> - sample로 Smileys & Emotion만을 구현
+> - 이모티콘을 delete하는 연산을 수행할 경우 하나의 charSequence만 삭제하기 때문에 다른 문자로 변환된다.(수정 요망)
 
 ### 6. 추가 필요 기능
-      > - Long Click 시 추가되는 글자(현재 연속으로 출력되도록 되어있음)
-      > - 천지인 키보드
-      > - 추가 이모티콘
-      > - 이모티콘 삭제 시 다른 유니코드로 변경되는 현상
-      > - background resources
-      > - create input view 속도 
+ > - Long Click 시 추가되는 글자(현재 연속으로 출력되도록 되어있음)
+ > - 천지인 키보드
+ > - 추가 이모티콘
+ > - 이모티콘 삭제 시 다른 유니코드로 변경되는 현상
+ > - background resources
+ > - create input view 속도 
