@@ -3,10 +3,10 @@
     <item android:left="2dp" android:right="2dp">
         <shape android:shape="rectangle">
             <corners
-                    android:bottomLeftRadius="2dp"
-                    android:bottomRightRadius="2dp"
-                    android:topLeftRadius="2dp"
-                    android:topRightRadius="2dp"></corners>
+                    android:bottomLeftRadius="12dp"
+                    android:bottomRightRadius="12dp"
+                    android:topLeftRadius="12dp"
+                    android:topRightRadius="4dp"></corners>
             <solid android:color="@color/keyboardBoarder"/>
         </shape>
     </item>

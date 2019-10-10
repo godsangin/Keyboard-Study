@@ -2,11 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@color/keyboardBackground">
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/keyboard_custom_view"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:numColumns="9"
+            android:visibility="gone"
+    />
     <FrameLayout
             android:id="@+id/keyboard_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
     </FrameLayout>
     <include

@@ -6,23 +6,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+    <include
+        android:id="@+id/setting_header"
+        layout="@layout/setting_header"
+        />
 
-    <EditText
+
+    <TextView
             android:id="@+id/testview"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Hello World!"
+            android:text="'설정' > '일반' > '언어 및 입력방식' > '스크린 키보드'에서 MyKeyboard를 추가한 후 사용하실 수 있습니다."
+            android:background="@drawable/textlines"
+            android:padding="8dp"
+            android:layout_margin="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/setting_header"/>
     <ListView
             android:id="@+id/setting_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/testview"
             >
-
-
     </ListView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

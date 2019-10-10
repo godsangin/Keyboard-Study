@@ -2,93 +2,91 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="match_parent">
     <LinearLayout
             android:id="@+id/numpad_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <Button
-                android:id="@+id/key_1"
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="1"/>
-        <Button
-                android:id="@+id/key_2"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="2"/>
-        <Button
-                android:id="@+id/key_3"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="3"/>
-        <Button
-                android:id="@+id/key_4"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="4"/>
-        <Button
-                android:id="@+id/key_5"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="5"/>
-        <Button
-                android:id="@+id/key_6"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="6"/>
-        <Button
-                android:id="@+id/key_7"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="7"/>
-        <Button
-                android:id="@+id/key_8"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="8"/>
-        <Button
-                android:id="@+id/key_9"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="9"/>
-        <Button
-                android:id="@+id/key_0"
+                android:layout_weight="1">
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_0"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="0"/>
+                android:layout_weight="1">
+        </include>
     </LinearLayout>
     <LinearLayout
             android:id="@+id/first_line"
@@ -96,86 +94,85 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <Button
-                android:id="@+id/key_q"
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_q"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="q"/>
-        <Button
-                android:id="@+id/key_w"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_w"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="w"/>
-        <Button
-                android:id="@+id/key_e"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_e"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="e"/>
-        <Button
-                android:id="@+id/key_r"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_r"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="r"/>
-        <Button
-                android:id="@+id/key_t"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_t"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="t"/>
-        <Button
-                android:id="@+id/key_y"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_y"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="y"/>
-        <Button
-                android:id="@+id/key_u"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_u"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="u"/>
-        <Button
-                android:id="@+id/key_i"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_i"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="i"/>
-        <Button
-                android:id="@+id/key_o"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_o"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="o"/>
-        <Button
-                android:id="@+id/key_p"
+                android:layout_weight="1">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_p"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="p"/>
+                android:layout_weight="1"/>
+
     </LinearLayout>
     <LinearLayout
             android:id="@+id/second_line"
@@ -185,78 +182,60 @@
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:orientation="horizontal">
-        <Button
-                android:id="@+id/key_a"
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_a"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="a"/>
-        <Button
-                android:id="@+id/key_s"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_s"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="s"/>
-        <Button
-                android:id="@+id/key_d"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_d"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="d"/>
-        <Button
-                android:id="@+id/key_f"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_f"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="f"/>
-        <Button
-                android:id="@+id/key_g"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_g"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="g"/>
-        <Button
-                android:id="@+id/key_h"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_h"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="h"/>
-        <Button
-                android:id="@+id/key_j"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_j"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="j"/>
-        <Button
-                android:id="@+id/key_k"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_k"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="k"/>
-        <Button
-                android:id="@+id/key_l"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_l"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="l"/>
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             android:id="@+id/third_line"
@@ -264,79 +243,60 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <Button
-                android:id="@+id/key_caps"
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_caps"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="CAPS"/>
-        <Button
-                android:id="@+id/key_z"
+                android:layout_weight="1.8"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_z"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="z"/>
-        <Button
-                android:id="@+id/key_x"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_x"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="x"/>
-        <Button
-                android:id="@+id/key_c"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_c"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="c"/>
-        <Button
-                android:id="@+id/key_v"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_v"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="v"/>
-        <Button
-                android:id="@+id/key_b"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_b"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="b"/>
-        <Button
-                android:id="@+id/key_n"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_n"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="n"/>
-        <Button
-                android:id="@+id/key_m"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_m"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="m"/>
-        <Button
-                android:id="@+id/del"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_del"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:longClickable="true"
-                android:text="DEL"/>
+                android:layout_weight="1.8"/>
     </LinearLayout>
     <LinearLayout
             android:id="@+id/fourth_line"
@@ -344,54 +304,42 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <Button
-                android:id="@+id/key_simbols"
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_simbols"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="!#1"/>
-        <Button
-                android:id="@+id/key_modechange"
+                android:layout_weight="2"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_mode_change"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="한/영"/>
-        <Button
-                android:id="@+id/key_rest"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_rest"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text=","/>
-        <Button
-                android:id="@+id/key_space"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_space"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="space"/>
-        <Button
-                android:id="@+id/key_dot"
+                android:layout_weight="4"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_dot"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="."/>
-        <Button
-                android:id="@+id/key_enter"
+                android:layout_weight="1"/>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/action_key_enter"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:layout_margin="2dp"
-                android:background="@drawable/key_background"
-                android:text="Enter"/>
+                android:layout_weight="2"/>
     </LinearLayout>
 
 
