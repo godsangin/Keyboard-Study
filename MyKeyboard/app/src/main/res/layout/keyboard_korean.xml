@@ -2,20 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+                android:background="@color/keyboardBackground">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <Button
+        <include
+                layout="@layout/keyboard_item"
+            android:id="@+id/testview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+
+        </include>
+        <!--<Button
                 android:id="@+id/key_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
-                android:text="1"/>
+                android:text="1"/>-->
         <Button
                 android:id="@+id/key_2"
                 android:layout_width="0dp"
@@ -267,7 +277,7 @@
                 android:id="@+id/key_caps"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1.8"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
                 android:text="CAPS"/>
@@ -331,7 +341,7 @@
                 android:id="@+id/del"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1.8"
                 android:layout_margin="2dp"
                 android:background="@drawable/key_background"
                 android:longClickable="true"

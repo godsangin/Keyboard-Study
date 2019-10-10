@@ -4,155 +4,177 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <LinearLayout
+            android:id="@+id/first_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <Button
-                android:id="@+id/num1"
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="1"/>
-        <Button
-                android:id="@+id/num2"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="2"/>
-        <Button
-                android:id="@+id/num3"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="3"/>
-        <Button
-                android:id="@+id/del"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="DEL"/>
+                android:layout_margin="2dp">
+
+        </include>
     </LinearLayout>
     <LinearLayout
+            android:id="@+id/second_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <Button
-                android:id="@+id/num4"
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="4"/>
-        <Button
-                android:id="@+id/num5"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="5"/>
-        <Button
-                android:id="@+id/num6"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="6"/>
-        <Button
-                android:id="@+id/next"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="Next"/>
+                android:layout_margin="2dp">
+
+        </include>
     </LinearLayout>
     <LinearLayout
+            android:id="@+id/third_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <Button
-                android:id="@+id/num7"
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="7"/>
-        <Button
-                android:id="@+id/num8"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="8"/>
-        <Button
-                android:id="@+id/num9"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="9"/>
-        <Button
-                android:id="@+id/dot"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="."/>
+                android:layout_margin="2dp">
+
+        </include>
     </LinearLayout>
     <LinearLayout
+            android:id="@+id/fourth_line"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <Button
-                android:id="@+id/key_modechange"
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="change"/>
-        <Button
-                android:id="@+id/num0"
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="0"/>
-        <Button
+                android:layout_margin="2dp">
+
+        </include>
+        <include
+            layout="@layout/keyboard_item"
+            android:id="@+id/testview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp">
+
+    </include>
+        <include
+                layout="@layout/keyboard_item"
+                android:id="@+id/testview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text=""/>
-        <Button
-                android:id="@+id/minus"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="4dp"
-                android:background="@drawable/key_background"
-                android:text="-"/>
+                android:layout_margin="2dp">
+
+        </include>
+
     </LinearLayout>
 
 
