@@ -10,11 +10,37 @@
             android:id="@+id/setting_header"
         layout="@layout/setting_header"
         />
+    <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/setting_header"
+            android:padding="8dp"
+            android:visibility="gone"
+            >
+        <RadioButton
+                android:id="@+id/qwerty_bt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="쿼티"
+                android:padding="8dp"
+                android:background="@drawable/normal"
+                android:layout_weight="1"/>
+        <RadioButton
+                android:id="@+id/chunjiin_bt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="천지인"
+                android:padding="8dp"
+                android:background="@drawable/normal"
+                android:layout_weight="1"/>
+    </RadioGroup>
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/setting_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/setting_header"
+            app:layout_constraintTop_toBottomOf="@id/radiogroup"
             app:layout_constraintEnd_toStartOf="@+id/keyboard_view">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -23,6 +49,13 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        layout="@layout/keyboard_english"
+        layout="@layout/keyboard_korean"
+        android:visibility="gone"/>
+    <include
+        android:id="@+id/keyboard_chunjiin"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        layout="@layout/keyboard_chunjiin_sample"
         android:visibility="gone"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
