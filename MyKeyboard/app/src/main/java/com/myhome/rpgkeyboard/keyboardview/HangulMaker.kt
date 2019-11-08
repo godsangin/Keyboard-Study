@@ -1,15 +1,16 @@
 package com.myhome.rpgkeyboard.keyboardview
 
+import android.os.Build
 import android.util.Log
 import android.view.inputmethod.InputConnection
 
-class HangulMaker {
-
+open class HangulMaker {
     private var cho: Char = '\u0000'
     private var jun: Char = '\u0000'
     private var jon: Char = '\u0000'
     private var jonFlag:Char = '\u0000'
     private var doubleJonFlag:Char = '\u0000'
+    var junFlag:Char = '\u0000'
 
     private val chos: List<Int> = listOf(0x3131, 0x3132, 0x3134, 0x3137, 0x3138, 0x3139, 0x3141,0x3142, 0x3143, 0x3145, 0x3146, 0x3147, 0x3148, 0x3149, 0x314a, 0x314b, 0x314c, 0x314d, 0x314e)
     private val juns:List<Int> = listOf(0x314f, 0x3150, 0x3151, 0x3152, 0x3153, 0x3154, 0x3155, 0x3156, 0x3157, 0x3158, 0x3159, 0x315a, 0x315b, 0x315c, 0x315d, 0x315e, 0x315f, 0x3160, 0x3161, 0x3162, 0x3163)
@@ -22,19 +23,19 @@ class HangulMaker {
      * 3: 모음 + 자음 + 모음입력상태(초 중 종성)
      * 초성과 종성에 들어갈 수 있는 문자가 다르기 때문에 필요에 맞게 수정이 필요함.(chos != jons)
      */
-    private var state = 0
+    protected var state = 0
     private lateinit var inputConnection:InputConnection
 
     constructor(inputConnection: InputConnection){
         this.inputConnection = inputConnection
     }
     fun clear(){
-
         cho = '\u0000'
         jun = '\u0000'
         jon = '\u0000'
         jonFlag = '\u0000'
         doubleJonFlag = '\u0000'
+        junFlag = '\u0000'
     }
 
     fun makeHan():Char{
@@ -53,14 +54,13 @@ class HangulMaker {
         return makeResult.toChar()
     }
 
-    fun commit(c:Char){
-        Log.d("makeresult==", makeHan().toString())
-        if(c.toInt() <= 57 && c.toInt() >= 48){
+    open fun commit(c:Char){
+        if(chos.indexOf(c.toInt()) < 0 && juns.indexOf(c.toInt()) < 0 && jons.indexOf(c.toInt()) < 0){
             directlyCommit()
             inputConnection.commitText(c.toString(), 1)
             return
         }
-        when(state){//초정과 종성을 비교하지 않았음(업데이트 필요)
+        when(state){
             0 -> {
                 if(juns.indexOf(c.toInt()) >= 0){
                     inputConnection.commitText(c.toString(), 1)
@@ -78,6 +78,7 @@ class HangulMaker {
                     cho = c
                     inputConnection.setComposingText(cho.toString(), 1)
                 }else{//중성일 경우
+                    Log.d("thisBlock==", "true")
                     state = 2
                     jun = c
                     inputConnection.setComposingText(makeHan().toString(), 1)
@@ -95,24 +96,24 @@ class HangulMaker {
                         state = 0
                     }
                 }
-                else{//종성이 들어왔을 경우
+                else if(jons.indexOf(c.toInt()) >= 0){//종성이 들어왔을 경우
                     jon = c
                     inputConnection.setComposingText(makeHan().toString(), 1)
                     state = 3
                 }
+                else{
+                    directlyCommit()
+                    cho = c
+                    state = 1
+                    inputConnection.setComposingText(makeHan().toString(), 1)
+                }
             }
             3 -> {
                 if(jons.indexOf(c.toInt()) >= 0){
-                    Log.d("isJons==", "true")
                     if(doubleJonEnable(c)){
-                        Log.d("isDoubleJons==", "true")
-                        Log.d("Jon==", jon.toString())
-                        Log.d("c==", c.toString())
                         inputConnection.setComposingText(makeHan().toString(), 1)
                     }
                     else{
-                        Log.d("text==",cho + " " + jun + " " + jon)
-                        Log.d("makehan==", makeHan().toString())
                         inputConnection.commitText(makeHan().toString(), 1)
                         clear()
                         state = 1
@@ -129,7 +130,7 @@ class HangulMaker {
                     inputConnection.setComposingText(cho.toString(), 1)
                 }
                 else{//중성이 들어올 경우
-                    var temp:Char? = null
+                    var temp:Char = '\u0000'
                     if(doubleJonFlag == '\u0000'){
                         temp = jon
                         jon = '\u0000'
@@ -157,29 +158,45 @@ class HangulMaker {
         clear()
     }
 
-    fun directlyCommit(){
+    open fun directlyCommit(){
+        if(state == 0){
+            return
+        }
         inputConnection.commitText(makeHan().toString(), 1)
         state = 0
         clear()
     }
 
-    fun delete(){
+    open fun delete(){
         when(state){
             0 -> {
-                inputConnection.deleteSurroundingText(1, 0)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    inputConnection.deleteSurroundingTextInCodePoints(1,0)
+                }
+                else{
+                    inputConnection.deleteSurroundingText(1, 0)
+                }
                 inputConnection.commitText("",1)
             }
             1 -> {
                 cho = '\u0000'
                 state = 0
                 inputConnection.setComposingText("", 1)
-
                 inputConnection.commitText("",1)
             }
             2 -> {
-                jun = '\u0000'
-                state = 1
-                inputConnection.setComposingText(cho.toString(), 1)
+                if(junFlag != '\u0000'){
+                    jun = junFlag
+                    junFlag = '\u0000'
+                    state = 2
+                    inputConnection.setComposingText(makeHan().toString(), 1)
+                }
+                else{
+                    jun = '\u0000'
+                    junFlag = '\u0000'
+                    state = 1
+                    inputConnection.setComposingText(cho.toString(), 1)
+                }
             }
             3 -> {
                 if(doubleJonFlag == '\u0000'){
@@ -201,14 +218,17 @@ class HangulMaker {
         when(jun){
             'ㅗ' -> {
                 if(c == 'ㅏ'){
+                    junFlag = jun
                     jun = 'ㅘ'
                     return true
                 }
                 if(c == 'ㅐ'){
+                    junFlag = jun
                     jun = 'ㅙ'
                     return true
                 }
                 if(c == 'ㅣ'){
+                    junFlag = jun
                     jun = 'ㅚ'
                     return true
                 }
@@ -216,14 +236,17 @@ class HangulMaker {
             }
             'ㅜ' -> {
                 if(c == 'ㅓ'){
+                    junFlag = jun
                     jun = 'ㅝ'
                     return true
                 }
                 if(c == 'ㅔ'){
+                    junFlag = jun
                     jun = 'ㅞ'
                     return true
                 }
                 if(c == 'ㅣ'){
+                    junFlag = jun
                     jun = 'ㅟ'
                     return true
                 }
@@ -231,6 +254,7 @@ class HangulMaker {
             }
             'ㅡ' -> {
                 if(c == 'ㅣ'){
+                    junFlag = jun
                     jun = 'ㅢ'
                     return true
                 }
@@ -306,5 +330,18 @@ class HangulMaker {
                 return false
             }
         }
+    }
+    fun junAvailable():Boolean{
+        if(jun == 'ㅙ' || jun == 'ㅞ' || jun == 'ㅢ'|| jun == 'ㅐ' || jun == 'ㅔ' || jun == 'ㅛ' || jun == 'ㅒ' || jun == 'ㅖ'){
+            return false
+        }
+        return true
+    }
+
+    fun isDoubleJun():Boolean{
+        if(jun == 'ㅙ' || jun == 'ㅞ' || jun == 'ㅚ'|| jun == 'ㅝ' || jun == 'ㅟ' || jun == 'ㅘ' || jun == 'ㅢ'){
+            return true
+        }
+        return false
     }
 }

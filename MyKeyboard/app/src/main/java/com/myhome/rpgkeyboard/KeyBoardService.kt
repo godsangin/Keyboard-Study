@@ -9,46 +9,46 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.myhome.rpgkeyboard.keyboardview.*
 import com.myhome.rpgkeyboard.setting.custom.CheckGridItem
 import com.myhome.rpgkeyboard.setting.custom.CustomSelectedItemDBHelper
-import com.myhome.rpgkeyboard.setting.custom.CustomViewAdapter
+import java.util.*
 
 
 class KeyBoardService : InputMethodService(){
     lateinit var keyboardView:LinearLayout
     lateinit var keyboardFrame:FrameLayout
-
     lateinit var keyboardKorean:KeyboardKorean
     lateinit var sharedPreferences:SharedPreferences
     lateinit var customSharedPreferences: SharedPreferences
-
-    var customItemCount = 1
     lateinit var items:ArrayList<CheckGridItem>
     lateinit var selectableItems:ArrayList<CheckGridItem>
-
-
     lateinit var customView: RecyclerView
     lateinit var customViewAdapter: FunctionalCustomViewAdpater
+    var isQwerty = 0
 
 
     val keyboardInterationListener = object:KeyboardInterationListener{
         //inputconnection이 null일경우 재요청하는 부분 필요함
         override fun modechange(mode: Int) {
+            currentInputConnection.finishComposingText()
             when(mode){
                 0 ->{
-                    Log.d("modechange==", "clicked0")
                     keyboardFrame.removeAllViews()
                     keyboardFrame.addView(KeyboardEnglish.newInstance(applicationContext, layoutInflater, currentInputConnection, this))
                 }
                 1 -> {
-                    keyboardFrame.removeAllViews()
-                    keyboardKorean = KeyboardKorean(applicationContext, layoutInflater, currentInputConnection, this)
-                    keyboardFrame.addView(keyboardKorean.init())
+                    if(isQwerty == 0){
+                        keyboardFrame.removeAllViews()
+                        keyboardKorean.inputConnection = currentInputConnection
+                        keyboardFrame.addView(keyboardKorean.getLayout())
+                    }
+                    else{
+                        keyboardFrame.removeAllViews()
+                        keyboardFrame.addView(KeyboardChunjiin.newInstance(applicationContext, layoutInflater, currentInputConnection, this))
+                    }
                 }
                 2 -> {
                     keyboardFrame.removeAllViews()
@@ -58,31 +58,27 @@ class KeyBoardService : InputMethodService(){
                     keyboardFrame.removeAllViews()
                     keyboardFrame.addView(KeyboardEmoji.newInstance(applicationContext, layoutInflater, currentInputConnection, this))
                 }
-                4 -> {
-                    keyboardFrame.removeAllViews()
-                    keyboardFrame.addView(KeyboardNumpad.newInstance(applicationContext, layoutInflater, currentInputConnection, this))
-                }
             }
         }
     }
 
-    override fun onCreateInputView(): View {
-        //onclick에서 바로 변경하자
+    override fun onCreate() {
+        super.onCreate()
         keyboardView = layoutInflater.inflate(R.layout.keyboard_view, null) as LinearLayout
         keyboardFrame = keyboardView.findViewById(R.id.keyboard_frame)
+        sharedPreferences = getSharedPreferences("setting", Context.MODE_PRIVATE)
+        customSharedPreferences = getSharedPreferences("custom", Context.MODE_PRIVATE)
+    }
 
-        keyboardKorean = KeyboardKorean(applicationContext, layoutInflater, currentInputConnection, keyboardInterationListener)
-        //english simbols number emoji
-
+    override fun onCreateInputView(): View {
+        keyboardKorean = KeyboardKorean(applicationContext, layoutInflater, keyboardInterationListener)
+        keyboardKorean.inputConnection = currentInputConnection
+        keyboardKorean.init()
         items = ArrayList()
         selectableItems = ArrayList<CheckGridItem>()
         customView = keyboardView.findViewById(R.id.keyboard_custom_view)
+        isQwerty = sharedPreferences.getInt("keyboardMode", 0)
 
-
-
-
-        sharedPreferences = getSharedPreferences("setting", Context.MODE_PRIVATE)
-        customSharedPreferences = getSharedPreferences("custom", Context.MODE_PRIVATE)
         setCustomComponents()
 
         return keyboardView
@@ -90,8 +86,10 @@ class KeyBoardService : InputMethodService(){
 
     override fun updateInputViewShown() {
         super.updateInputViewShown()
+        currentInputConnection.finishComposingText()
         if(currentInputEditorInfo.inputType == EditorInfo.TYPE_CLASS_NUMBER){
-            keyboardInterationListener.modechange(4)
+            keyboardFrame.removeAllViews()
+            keyboardFrame.addView(KeyboardNumpad.newInstance(applicationContext, layoutInflater, currentInputConnection, keyboardInterationListener))
         }
         else{
             keyboardInterationListener.modechange(1)
@@ -107,7 +105,6 @@ class KeyBoardService : InputMethodService(){
 
     fun setCustomComponents(){
         val customViewEnable = sharedPreferences.getInt("customViewEnable", -1)
-        Log.d("cutomViewEnable==", customViewEnable.toString())
         if(customViewEnable >= 0){
             customView.visibility = View.VISIBLE
             setCustomGroup()
@@ -133,7 +130,7 @@ class KeyBoardService : InputMethodService(){
         }
     }
     private fun setCustomGroup(){
-        val height = sharedPreferences.getInt("keyboardHeight", 100)
+        val height = sharedPreferences.getInt("keyboardHeight", 150)
         val config = applicationContext.getResources().configuration
         if(config.orientation == Configuration.ORIENTATION_LANDSCAPE){
             customView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (height*0.7).toInt())

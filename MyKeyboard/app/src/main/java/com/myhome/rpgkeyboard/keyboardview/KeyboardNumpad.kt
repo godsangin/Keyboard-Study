@@ -35,7 +35,6 @@ class KeyboardNumpad{
         val fourthLineText = listOf<String>("-", "0", ",", "")
         val myKeysText = ArrayList<List<String>>()
         val layoutLines = ArrayList<LinearLayout>()
-        var animationMode:Int = 0
 
         fun newInstance(context:Context, layoutInflater: LayoutInflater, inputConnection: InputConnection, keyboardInterationListener: KeyboardInterationListener): LinearLayout {
             numpadLayout = layoutInflater.inflate(R.layout.keyboard_numpad, null) as LinearLayout
@@ -45,8 +44,7 @@ class KeyboardNumpad{
             vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
             val sharedPreferences = context.getSharedPreferences("setting", Context.MODE_PRIVATE)
-            val height = sharedPreferences.getInt("keyboardHeight", 100)
-            animationMode = sharedPreferences.getInt("theme", 0)
+            val height = sharedPreferences.getInt("keyboardHeight", 150)
             val config = context.getResources().configuration
 
             val firstLine = numpadLayout.findViewById<LinearLayout>(
@@ -112,7 +110,9 @@ class KeyboardNumpad{
                 for(item in children.indices){
                     val actionButton = children[item].findViewById<Button>(R.id.key_button)
                     actionButton.text = myText[item]
+
                     buttons.add(actionButton)
+
                     val clickListener = (View.OnClickListener {
                         if(vibrate > 0){
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
