@@ -21,10 +21,6 @@
 > - xml에 정의된 key_layout을 의미함.
 > - 한글, 영어로 정의되어 있고, 영어 유니코드를 기반으로 설정하여 한글의 경우 mapping과정을 통하여 변환되는 과정을 거침.(ex. 'q'->'ㅂ')
 
-### Automata
-> - firstmodel의 경우 "", "ㅂ", "바", "박", "ㅏ" 의 다섯가지 상태를 가짐.
-> - 각자의 상태에서 기대되는 다음 입력에 따라 상태가 변함.
-![ex_screenshot](./img/keyboardAutomata.PNG)
 
 ## Secondmodel
 * onclickevent를 통해 keyevent송수신(V)
@@ -74,11 +70,8 @@
 > - 5자리 16진수로 이루어져 있기 때문에 charSequence로 가정하자면 두자리를 차지한다.
 > - sample로 Smileys & Emotion만을 구현
 > - 이모티콘을 delete하는 연산을 수행할 경우 하나의 charSequence만 삭제하기 때문에 다른 문자로 변환된다.(수정 요망)
+### 6. Automata
+> - firstmodel의 경우 "", "ㅂ", "바", "박", "ㅏ" 의 다섯가지 상태를 가짐.
+> - 각자의 상태에서 기대되는 다음 입력에 따라 상태가 변함.
+![ex_screenshot](./img/keyboardAutomata.PNG)
 
-### 6. 추가 필요 기능
- > - Long Click 시 추가되는 글자(현재 연속으로 출력되도록 되어있음)
- > - 천지인 키보드
- > - 추가 이모티콘
- > - 이모티콘 삭제 시 다른 유니코드로 변경되는 현상
- > - background resources
- > - create input view 속도 
