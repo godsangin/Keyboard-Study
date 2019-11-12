@@ -21,6 +21,8 @@ class KeyBoardService : InputMethodService(){
     lateinit var keyboardView:LinearLayout
     lateinit var keyboardFrame:FrameLayout
     lateinit var keyboardKorean:KeyboardKorean
+    lateinit var keyboardEnglish:KeyboardEnglish
+    lateinit var keyboardSimbols:KeyboardSimbols
     lateinit var sharedPreferences:SharedPreferences
     lateinit var customSharedPreferences: SharedPreferences
     lateinit var items:ArrayList<CheckGridItem>
@@ -37,10 +39,11 @@ class KeyBoardService : InputMethodService(){
             when(mode){
                 0 ->{
                     keyboardFrame.removeAllViews()
-                    keyboardFrame.addView(KeyboardEnglish.newInstance(applicationContext, layoutInflater, currentInputConnection, this))
+                    keyboardEnglish.inputConnection = currentInputConnection
+                    keyboardFrame.addView(keyboardEnglish.getLayout())
                 }
                 1 -> {
-                    if(isQwerty == 0){
+                    if(isQwerty == 1){
                         keyboardFrame.removeAllViews()
                         keyboardKorean.inputConnection = currentInputConnection
                         keyboardFrame.addView(keyboardKorean.getLayout())
@@ -52,7 +55,8 @@ class KeyBoardService : InputMethodService(){
                 }
                 2 -> {
                     keyboardFrame.removeAllViews()
-                    keyboardFrame.addView(KeyboardSimbols.newInstance(applicationContext, layoutInflater, currentInputConnection, this))
+                    keyboardSimbols.inputConnection = currentInputConnection
+                    keyboardFrame.addView(keyboardSimbols.getLayout())
                 }
                 3 -> {
                     keyboardFrame.removeAllViews()
@@ -72,12 +76,18 @@ class KeyBoardService : InputMethodService(){
 
     override fun onCreateInputView(): View {
         keyboardKorean = KeyboardKorean(applicationContext, layoutInflater, keyboardInterationListener)
+        keyboardEnglish = KeyboardEnglish(applicationContext, layoutInflater, keyboardInterationListener)
+        keyboardSimbols = KeyboardSimbols(applicationContext, layoutInflater, keyboardInterationListener)
         keyboardKorean.inputConnection = currentInputConnection
         keyboardKorean.init()
+        keyboardEnglish.inputConnection = currentInputConnection
+        keyboardEnglish.init()
+        keyboardSimbols.inputConnection = currentInputConnection
+        keyboardSimbols.init()
+
         items = ArrayList()
         selectableItems = ArrayList<CheckGridItem>()
         customView = keyboardView.findViewById(R.id.keyboard_custom_view)
-        isQwerty = sharedPreferences.getInt("keyboardMode", 0)
 
         setCustomComponents()
 
@@ -87,6 +97,7 @@ class KeyBoardService : InputMethodService(){
     override fun updateInputViewShown() {
         super.updateInputViewShown()
         currentInputConnection.finishComposingText()
+        isQwerty = sharedPreferences.getInt("keyboardMode", 1)
         if(currentInputEditorInfo.inputType == EditorInfo.TYPE_CLASS_NUMBER){
             keyboardFrame.removeAllViews()
             keyboardFrame.addView(KeyboardNumpad.newInstance(applicationContext, layoutInflater, currentInputConnection, keyboardInterationListener))

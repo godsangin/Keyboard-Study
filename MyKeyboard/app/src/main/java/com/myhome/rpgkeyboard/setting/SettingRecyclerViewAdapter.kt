@@ -111,7 +111,7 @@ class SettingRecyclerViewAdapter(val context:Context, val settingList:ArrayList<
             }
             else{
                 checkBox?.isChecked = false
-                seekBar?.progress = 100
+                seekBar?.progress = 150
                 seekBar?.visibility = View.GONE
             }
             checkBox?.setOnClickListener(object: View.OnClickListener{
@@ -120,13 +120,13 @@ class SettingRecyclerViewAdapter(val context:Context, val settingList:ArrayList<
                         checkBox?.isChecked = true
                         seekBar?.visibility = View.VISIBLE
                         seekBar?.max = 255
-                        seekBar?.progress = 100
+                        seekBar?.progress = 150
                     }
                     else{
                         val editor = sharedPreferences.edit()
                         editor.putInt(settingList[position].flag, -1)
                         editor.commit()
-                        seekBar?.progress = 100
+                        seekBar?.progress = 150
                         seekBar?.visibility = View.GONE
                     }
                 }

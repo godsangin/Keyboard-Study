@@ -23,7 +23,6 @@ class ChunjiinMaker(val inputConnection: InputConnection): HangulMaker(inputConn
     var keywordExpect = false
     var stateThreeDot = false
     override fun commit(c:Char){
-        Log.d("state==", super.state.toString())
         if(keywordExpect){
             inputConnection.finishComposingText()
             keywordExpect = false
@@ -62,7 +61,6 @@ class ChunjiinMaker(val inputConnection: InputConnection): HangulMaker(inputConn
                         inputConnection.setComposingText(super.makeHan().toString() + testChar, 2)
                         super.state = 2
                     }
-//                    super.junFlag = '·'
                 }
                 else{
                     super.commit(testChar)
@@ -72,7 +70,6 @@ class ChunjiinMaker(val inputConnection: InputConnection): HangulMaker(inputConn
             }
             else{
                 if(combination(c)){//이중모음으로 선언 가능한 경우
-                    Log.d("state==", "combinationSuccess")
                     if(testChar == '‥'){
                         inputConnection.setComposingText(super.makeHan().toString() + testChar, 2)
                     }
@@ -104,37 +101,31 @@ class ChunjiinMaker(val inputConnection: InputConnection): HangulMaker(inputConn
 
         }
         else if(myList == null){//첫입력
-            if(onlyMoum){
+            if(onlyMoum){//모음으로만 구성된 문자를 작성중이었다면 commit한다.
                 inputConnection.commitText(testChar.toString(), 1)
             }
             onlyMoum = false
             testChar = c
-            for(list in wholeList){
+            for(list in wholeList){//전체 리스트를 순회하며 현재 텍스트를 포함하는 리스트를 찾는다.
                 if(list.indexOf(testChar) >= 0){
                     myList = list
                     listIndex = 1
                 }
             }
-            if(super.state == 1 || super.state == 3){
-                super.delete()
-                super.commit(testChar)
-            }
-            else{
-                super.commit(testChar)
-            }
+            super.commit(testChar)
             isComposingMoum = false
         }
-        else if(myList?.indexOf(c)!! >= 0){
+        else if(myList?.indexOf(c)!! >= 0){//현재 작성중인 문자에서 파생될수 있는 문자를 출력 ex) ㄱ -> ㅋ
             if(onlyMoum){
                 inputConnection.commitText(testChar.toString(), 1)
             }
             onlyMoum = false
-            if(listIndex == myList?.size){
+            if(listIndex == myList?.size){//더이상 파생할 수 없을 경우 첫번째 문자로 돌아간다. ex) ㄲ -> ㄱ
                 listIndex = 0
             }
             testChar = myList?.get(listIndex)!!
             listIndex++
-            if(super.state == 1 || super.state == 3){
+            if(super.state == 1 || super.state == 3){//단어를 대체하기 위하여 delete한 뒤 새로운 문자를 commit한다.
                 super.delete()
                 super.commit(testChar)
             }
@@ -157,7 +148,7 @@ class ChunjiinMaker(val inputConnection: InputConnection): HangulMaker(inputConn
         }
     }
 
-    fun combination(c:Char):Boolean{
+    fun combination(c:Char):Boolean{//모음을 구성하기 위한 조합 성공시 true리턴
         when(testChar){
             'ㅣ' -> {
                 if(c == '·'){
@@ -317,23 +308,22 @@ class ChunjiinMaker(val inputConnection: InputConnection): HangulMaker(inputConn
     }
 
     override fun directlyCommit(){
-        Log.d("thisline==","true")
         super.directlyCommit()
         inputConnection.finishComposingText()
         clearChunjiin()
     }
 
     override fun delete(){
-        if(onlyMoum){
+        if(onlyMoum){//현재 커서가 모음으로만 구성된 문자일 경우
             inputConnection.setComposingText("", 1)
             clearChunjiin()
         }
-        else if(stateThreeDot){
+        else if(stateThreeDot){//HangulMaker의 3번상태(자음+모음+자음)상태에서 .기호가 들어와 있는 상태
             inputConnection.setComposingText(super.makeHan().toString(), 1)
             clearChunjiin()
             stateThreeDot = false
         }
-        else if(super.state == 2 && super.isDoubleJun()){
+        else if(super.state == 2 && super.isDoubleJun()){//상태 2이면서 이중모음이 들어와 있는 상태
             super.delete()
             setTestCharBefore()
         }
@@ -344,7 +334,7 @@ class ChunjiinMaker(val inputConnection: InputConnection): HangulMaker(inputConn
         listIndex = 0
     }
 
-    fun commonKeywordCommit(){
+    fun commonKeywordCommit(){//특수문자 입력 시
         directlyCommit()
         if(keywordIndex == commonKeywords.size){
             keywordIndex = 0
@@ -367,7 +357,7 @@ class ChunjiinMaker(val inputConnection: InputConnection): HangulMaker(inputConn
         }
         return false
     }
-    fun setTestCharBefore(){
+    fun setTestCharBefore(){//이중모음 이전의 상태를 반환
         if(testChar == 'ㅚ' || testChar == 'ㅘ' || testChar == 'ㅙ'){
             testChar = 'ㅗ'
         }

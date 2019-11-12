@@ -121,7 +121,7 @@ class SettingDetailActivity : AppCompatActivity() {
         val qwertyButton = findViewById<RadioButton>(R.id.qwerty_bt)
         val chunjiinButton = findViewById<RadioButton>(R.id.chunjiin_bt)
         val editor = sharedPreferences.edit()
-        if(sharedPreferences.getInt("keyboardMode", 0) == 0){
+        if(sharedPreferences.getInt("keyboardMode", 1) == 1){
             qwertyButton.isChecked = true
         }
         else{
@@ -137,7 +137,7 @@ class SettingDetailActivity : AppCompatActivity() {
             keyboardView = findViewById(R.id.keyboard_view)
             keyboardView.visibility = View.VISIBLE
             setMyKeyboardHeight(sharedPreferences.getInt("height", 150))
-            editor.putInt("keyboardMode", 0)
+            editor.putInt("keyboardMode", 1)
             editor.commit()
         }
         chunjiinButton.setOnClickListener {
@@ -146,7 +146,7 @@ class SettingDetailActivity : AppCompatActivity() {
             keyboardView = findViewById(R.id.keyboard_chunjiin)
             keyboardView.visibility = View.VISIBLE
             setMyKeyboardHeight(sharedPreferences.getInt("height", 150))
-            editor.putInt("keyboardMode", 1)
+            editor.putInt("keyboardMode", 0)
             editor.commit()
         }
     }
