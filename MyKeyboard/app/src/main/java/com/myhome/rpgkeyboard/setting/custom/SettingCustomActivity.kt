@@ -25,7 +25,6 @@ class SettingCustomActivity : AppCompatActivity() {
     lateinit var viewWithKeyboardButton:Button
     lateinit var viewWithCustomViewButton:Button
     lateinit var checkGridView:RecyclerView
-    lateinit var checkGridAdapter: CheckGridAdapter
     lateinit var checkRecyclerAdapter:CheckRecyclerAdapter
     lateinit var checkedListener: CheckedListener
     lateinit var customViewAdapter: CustomViewAdapter
